@@ -1,72 +1,123 @@
-@import 'cores';
-@import 'fontes';
+@import "cores";
+@import "fontes";
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 #header {
-    background-color: $cor-header;
-    padding: 10px 20px;
-    margin-bottom: 10px;
+  background-color: $cor-header;
+  padding: 10px 20px;
+  margin-bottom: 10px;
 
-    * {
-        display: inline;
-        vertical-align: middle;
-    }
+  * {
+    display: inline;
+    vertical-align: middle;
+  }
 
-    img {
-        width: 70px;
-        margin-right: 20px;
-    }
+  img {
+    width: 70px;
+    margin-right: 20px;
+  }
 
-    h1 {
-        font-family: $fonte-decorativa;
-        color: white;
-        text-shadow: 1px 1px #95a5a6;
-    }
+  h1 {
+    font-family: $fonte-decorativa;
+    color: #002c3e;
+    text-shadow: 1px 1px #95a5a6;
+  }
 }
 
-
-
 #formularioContato {
+  padding: 10px;
+  border: 1px solid $cor-borda;
+  width: 95%;
+  margin: auto;
 
-    padding: 10px;
-    border: 1px solid $cor-borda;
-    width: 95%;
-    margin: auto;
-    
-    label, input {
-        display: block;
-        font-family: $fonte-padrao;
+  label,
+  input {
+    display: block;
+    font-family: $fonte-padrao;
+  }
+
+  input {
+    margin-bottom: 10px;
+    height: 20px;
+    font-size: 100%;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    padding-left: 5px;
+
+    // O & serve para concatener alguma coisa. E tudo que estiver aqui dentro será empregado apenas em input cujo type=text
+    &[type="text"] {
+      width: 300px;
     }
 
-    input {
-        margin-bottom: 10px;
-        height: 20px;
-        font-size: 100%;
-        border-radius: 5px;
-        border: 1px solid #bbb;
-        padding-left: 5px;
+    &[type="tel"] {
+      width: 140px;
+    }
+    &[type="email"] {
+      width: 200px;
+    }
+    &[type="submit"] {
+      padding: 10px 20px;
+      //anula a altura padrão
+      height: inherit;
+      background-color: $cor-botao-primario;
+      color: #FAFAFF;
+    }
+  }
+}
 
-        // O & serve para concatener alguma coisa. E tudo que estiver aqui dentro será empregado apenas em input cujo type=text
-        &[type=text] {
-            width: 300px;
-        }
+#tabelaContatos {
+  margin: 10px auto;
+  width: 95%;
 
-        &[type=tel] {
-            width: 140px;
-        }
-        &[type=email] {
-            width: 200px;
-        } 
-        &[type=submit] {
-            padding: 10px 20px;
-            //anula a altura padrão
-            height: inherit;
-            background-color: $cor-botao-primario;
-            color: white;
-        }
+  table {
+    border-collapse: collapse;
+    margin: 0px auto 50px auto;
+    width: 100%;
+    font-family: $fonte-padrao;
+    //text-align: left;
+
+    thead {
+      background-color: $cor-header;
+      color: #002c3e;
     }
 
+    tr {
+      &:hover {
+        td {
+          background-color: #dad9d8;
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: rgb(229, 226, 236);
+      }
+
+      td {
+        font-size: 90%;
+      }
+
+      th,
+      td {
+        // Regra geral
+        text-align: center;
+        padding: 5px 0px;
+        //border: 1px solid blue;
+
+        // Regra específica para a primeira coluna
+        &:first-child {
+          text-align: left;
+          padding-left: 5px;
+        }
+
+        // Regra específica para a última coluna
+        &:last-child {
+          text-align: right;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
 }
