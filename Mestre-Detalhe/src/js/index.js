@@ -28,8 +28,8 @@ var contatos = [
     }
 ];
 
-renderizarTabelaContatos();
-renderizarCardsContatos();
+renderizarTabelaContatos(contatos);
+renderizarCardsContatos(contatos);
 
 //Cria um apelido para a função querySelector
 //var sel = document.querySelector;
@@ -61,12 +61,12 @@ function salvarContato(event) {
     contatos.push(contato);
 
     // Invoca a renderização da tabela
-    renderizarTabelaContatos();
-    renderizarCardsContatos();
+    renderizarTabelaContatos(contatos);
+    renderizarCardsContatos(contatos);
 }
 
-function renderizarTabelaContatos() {
-    if (contatos.length > 0) {
+function renderizarTabelaContatos(listaContatos) {
+    if (listaContatos.length > 0) {
         let areaListagemContatos = document.getElementById('tabelaContatos');
 
         /**
@@ -85,7 +85,7 @@ function renderizarTabelaContatos() {
         tabela.appendChild(cabecalho);
 
         // Adiciona o corpo da tabela na tabela
-        let corpoTabela = criarCorpoTabela();
+        let corpoTabela = criarCorpoTabela(listaContatos);
         tabela.appendChild(corpoTabela);
 
         // Adiciona a tabela na área de listagem
@@ -120,27 +120,27 @@ function criaCabecalhoTabela() {
     return cabecalho;
 }
 
-function criarCorpoTabela() {
+function criarCorpoTabela(listaContatos) {
     let corpoTabela = document.createElement('tbody');
 
     /**
      * Cria as linhas de contatos
      */
-    for (let i = 0; i < contatos.length; i++) {
+    for (let i = 0; i < listaContatos.length; i++) {
         //Cria uma nova linha no corpo da tabela
         let linha = document.createElement('tr');
 
         let celulaNome = document.createElement('td');
-        celulaNome.innerText = contatos[i].nome;
+        celulaNome.innerText = listaContatos[i].nome;
         linha.appendChild(celulaNome);
         let celulaTelefone = document.createElement('td');
-        celulaTelefone.innerText = contatos[i].telefone;
+        celulaTelefone.innerText = listaContatos[i].telefone;
         linha.appendChild(celulaTelefone);
         let celulaEmail = document.createElement('td');
-        celulaEmail.innerText = contatos[i].email;
+        celulaEmail.innerText = listaContatos[i].email;
         linha.appendChild(celulaEmail);
         let celulaDataNascimento = document.createElement('td');
-        celulaDataNascimento.innerText = contatos[i].dataNascimento;
+        celulaDataNascimento.innerText = listaContatos[i].dataNascimento;
         linha.appendChild(celulaDataNascimento);
 
         // Adiciona a nova linha no corpo da tabela
@@ -150,13 +150,18 @@ function criarCorpoTabela() {
     return corpoTabela;
 }
 
-function renderizarCardsContatos() {
-    if (contatos.length > 0) {
+function renderizarCardsContatos(listaContatos) {
+    if (listaContatos.length > 0) {
         let areaListagemContatos = document.getElementById('cardsContatos');
+
+        /**
+         * Limpa a área de listagem
+         */
+        areaListagemContatos.innerHTML = '';
 
         // Ao invés de usar um loop normal, vamos usar foreach
 
-        contatos.forEach(function (contato) {
+        listaContatos.forEach(function (contato) {
             let card = document.createElement('div');
             let inicialNome = document.createElement('span');
             inicialNome.innerText = contato.nome.charAt(0);
@@ -181,5 +186,27 @@ function renderizarCardsContatos() {
 
             areaListagemContatos.appendChild(card);
         });
+    }
+}
+
+function filtrarContatos() {
+    if (contatos.length > 0) {
+        let filtro = document.getElementById('filtro').value;
+        filtro = filtro.toLowerCase();
+
+        /**
+         * Filtra os contatos de acordo com o texto digitado pelo usuário no campo de filtro
+         */
+        let contatosFiltrados = contatos.filter(function(contato) {
+            let nome = contato.nome.toLowerCase();
+            let email = contato.email.toLowerCase();
+
+            if(nome.includes(filtro) || email.includes(filtro)) {
+                return contato;
+            }
+        });
+
+        renderizarTabelaContatos(contatosFiltrados);
+        renderizarCardsContatos(contatosFiltrados);
     }
 }

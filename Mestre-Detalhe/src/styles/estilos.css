@@ -31,8 +31,9 @@ body {
 
 #formularioContato {
   padding: 10px;
-  border-radius: 5px;
-  width: 95%;
+  border-bottom: 1px solid #bebcbc;
+  box-shadow: 0px 1px #dbd9d9;
+  width: 90%;
   margin: auto;
 }
 #formularioContato label,
@@ -49,19 +50,26 @@ body {
   padding-left: 5px;
 }
 #formularioContato input[type=text] {
-  width: 300px;
+  width: 95%;
+  max-width: 300px;
 }
 #formularioContato input[type=tel] {
-  width: 140px;
+  width: 95%;
+  max-width: 140px;
 }
 #formularioContato input[type=email] {
-  width: 200px;
+  width: 95%;
+  max-width: 200px;
 }
 #formularioContato input[type=submit] {
   padding: 10px 20px;
   height: inherit;
   background-color: #5785C7;
   color: white;
+}
+#formularioContato input[type=date] {
+  width: 95%;
+  max-width: 140px;
 }
 
 #tabelaContatos {
@@ -108,10 +116,10 @@ body {
   padding: 5px 0px;
 }
 #cardsContatos div {
-  box-shadow: 1px 1px #95a5a6;
+  box-shadow: 2px 2px #ededee;
   border-radius: 5px;
   margin: 0px auto 10px auto;
-  width: 95%;
+  width: 90%;
   padding: 14px 7px 7px 7px;
 }
 #cardsContatos div span {

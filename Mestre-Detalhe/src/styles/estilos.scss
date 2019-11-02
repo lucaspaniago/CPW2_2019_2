@@ -31,8 +31,10 @@ body {
   padding: 10px;
   //border: 1px solid $cor-borda;
   //box-shadow: 2px 2px #95a5a6;
-  border-radius: 5px;
-  width: 95%;
+  border-bottom: 1px solid rgb(190, 188, 188);
+  box-shadow: 0px 1px rgb(219, 217, 217);
+  //border-radius: 5px;
+  width: 90%;
   margin: auto;
 
   label,
@@ -51,14 +53,17 @@ body {
 
     // O & serve para concatener alguma coisa. E tudo que estiver aqui dentro será empregado apenas em input cujo type=text
     &[type="text"] {
-      width: 300px;
+      width: 95%;
+      max-width: 300px;
     }
 
     &[type="tel"] {
-      width: 140px;
+      width: 95%;
+      max-width: 140px;
     }
     &[type="email"] {
-      width: 200px;
+      width: 95%;
+      max-width: 200px;
     }
     &[type="submit"] {
       padding: 10px 20px;
@@ -66,6 +71,10 @@ body {
       height: inherit;
       background-color: $cor-botao-primario;
       color: white;
+    }
+    &[type="date"] {
+      width: 95%;
+      max-width: 140px;
     }
   }
 }
@@ -132,10 +141,10 @@ body {
   // Cada div representa um card
   div {
     //border: 1px solid #95a5a6;
-    box-shadow: 1px 1px #95a5a6;
+    box-shadow: 2px 2px #ededee;
     border-radius: 5px;
     margin: 0px auto 10px auto;
-    width: 95%;
+    width: 90%;
     padding: 14px 7px 7px 7px;
 
     span {
