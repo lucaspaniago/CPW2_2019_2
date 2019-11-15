@@ -116,7 +116,7 @@ body {
   padding: 5px 0px;
 }
 #cardsContatos div {
-  box-shadow: 2px 2px #ededee;
+  box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
   border-radius: 5px;
   margin: 0px auto 10px auto;
   width: 90%;
@@ -142,6 +142,22 @@ body {
   margin-right: 3px;
 }
 
+#filtro {
+  margin: 30px auto 10px auto;
+  display: block;
+  border-radius: 20px;
+  width: 50%;
+  height: 30px;
+  border: 1px solid #cccccc;
+  outline: none;
+  padding: 0px 20px 0px 20px;
+  font-size: 90%;
+}
+#filtro:hover {
+  border: none;
+  box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
+}
+
 @media only screen and (max-width: 600px) {
   #cardsContatos {
     display: block;
@@ -149,6 +165,10 @@ body {
 
   #tabelaContatos {
     display: none;
+  }
+
+  #filtro {
+    width: 70%;
   }
 }
 
