@@ -156,6 +156,7 @@ body {
 #filtro:hover {
   border: none;
   box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
+  margin-bottom: 12px;
 }
 
 @media only screen and (max-width: 600px) {

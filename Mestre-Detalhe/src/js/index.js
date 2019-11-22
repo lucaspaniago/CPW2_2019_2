@@ -1,32 +1,12 @@
-/*Nosso BD fake! 
+/*Nosso BD fake!
 (in memory BD)*/
 
-var contatos = [
-    {
-        nome: 'Lucas',
-        telefone: '(99) 99999-9999',
-        email: 'lucas@gmail.com',
-        dataNascimento: '08/09/1987'
-    },
-    {
-        nome: 'Suellen',
-        telefone: '(67) 99999-9999',
-        email: 'morena@gmail.com',
-        dataNascimento: '08/09/1987'
-    },
-    {
-        nome: 'Sansa',
-        telefone: '(67) 99999-9999',
-        email: 'sansa@gmail.com',
-        dataNascimento: '08/09/1987'
-    },
-    {
-        nome: 'Arya',
-        telefone: '(67) 99999-9999',
-        email: 'arya@gmail.com',
-        dataNascimento: '08/09/1987'
-    }
-];
+let lucas = new Contato('Lucas', '(99) 99999-9999', 'lucas@gmail.com', '08/09/1987');
+let suellen = new Contato('Suellen', '(99) 99999-9999', 'suellen@gmail.com', '08/09/1987');
+let sansa = new Contato('Sansa', '(99) 99999-9999', 'sansa@gmail.com', '08/09/1987');
+let arya = new Contato('Arya', '(99) 99999-9999', 'arya@gmail.com', '08/09/1987');
+
+var contatos = [lucas, suellen, sansa, arya];
 
 renderizarTabelaContatos(contatos);
 renderizarCardsContatos(contatos);
