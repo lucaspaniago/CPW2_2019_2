@@ -1,10 +1,10 @@
 class ContatoView {
 
     constructor(contatos) {
-        this.contatos = contatos;
-        this.contatosFiltrados = contatos;
-        this.renderizarCardsContatos();
-        this.renderizarTabelaContatos();
+        this.controller =
+            new ContatoController(contatos);
+        this.renderizarCardsContatos(contatos);
+        this.renderizarTabelaContatos(contatos);
     }
 
     salvarContato(event) {
@@ -20,31 +20,51 @@ class ContatoView {
         let telefone = $('#telefone').val();
         let email = $('#email').val();
         let dataNascimento = $('#dataNascimento').val();
+        dataNascimento = DataHelper.formatarData(dataNascimento);
 
         // Cria um objeto de contato
         let contato = new Contato(
             nome, telefone, email, dataNascimento);
 
         // Adiciona o contato no nosso BD (no final do vetor)
-        this.contatos.push(contato);
+        this.controller.salvar(contato);
+
+        this.limparFormulario();
+
+        let contatos = this.controller.recuperarTodos();
+
+        // Limpa o filtro
+        document.getElementById('filtro').value = '';
 
         // Invoca a renderização da tabela
-        renderizarTabelaContatos();
+        this.renderizarTabelaContatos(contatos);
 
         // Invoca a renderização dos cards
-        renderizarCardsContatos();
+        this.renderizarCardsContatos(contatos);
     }
 
-    renderizarTabelaContatos() {
-        if (this.contatosFiltrados.length > 0) {
-            let areaListagemContatos =
-                document.getElementById('tabelaContatos');
+    /**
+     * Limpa o formulário de cadastro de contato
+     */
+    limparFormulario() {
+        [
+            'nome',
+            'telefone',
+            'email',
+            'dataNascimento'
+        ].forEach(id => document.getElementById(id).value = '');
+    }
 
-            /**
-             * Limpa a área de listagem
-             */
-            areaListagemContatos.innerHTML = '';
+    renderizarTabelaContatos(contatos) {
+        let areaListagemContatos =
+            document.getElementById('tabelaContatos');
 
+        /**
+         * Limpa a área de listagem
+         */
+        areaListagemContatos.innerHTML = '';
+
+        if (contatos.length > 0) {
             /**
              * Cria a tabela
              */
@@ -54,19 +74,23 @@ class ContatoView {
             // Adiciona o cabeçalho dentro da tabela
             tabela.appendChild(cabecalho);
 
-            let corpoTabela = this.criarCorpoTabela();
+            let corpoTabela = this.criarCorpoTabela(contatos);
             // Adiciona o corpo da tabela na tabela
             tabela.appendChild(corpoTabela);
 
             // Adiciona a tabela na área de listagem
             areaListagemContatos.appendChild(tabela);
+        } else {
+            let spanMensagem = document.createElement('span');
+            spanMensagem.innerText = 'Nenhum contato encontrado';
+            areaListagemContatos.appendChild(spanMensagem);
         }
     }
 
     criarCabecalhoTabela() {
         /**
-         * Cria o cabeçalho da tabela
-         */
+        * Cria o cabeçalho da tabela
+        */
         let cabecalho = document.createElement('thead');
         let linhaCabecalho = document.createElement('tr');
         let colunaNome = document.createElement('th');
@@ -91,7 +115,7 @@ class ContatoView {
         return cabecalho;
     }
 
-    criarCorpoTabela() {
+    criarCorpoTabela(contatos) {
         /**
          * Cria o corpo da tabela
          */
@@ -100,23 +124,23 @@ class ContatoView {
         /**
          * Cria a linhas de contatos
          */
-        for (let i = 0; i < this.contatosFiltrados.length; i++) {
+        for (let i = 0; i < contatos.length; i++) {
             /**
              * Cria uma nova linha no corpo da tabela
              */
             let linha = document.createElement('tr');
 
             let celulaNome = document.createElement('td');
-            celulaNome.innerText = this.contatosFiltrados[i].nome;
+            celulaNome.innerText = contatos[i].nome;
             linha.appendChild(celulaNome);
             let celulaTelefone = document.createElement('td');
-            celulaTelefone.innerText = this.contatosFiltrados[i].telefone;
+            celulaTelefone.innerText = contatos[i].telefone;
             linha.appendChild(celulaTelefone);
             let celulaEmail = document.createElement('td');
-            celulaEmail.innerText = this.contatosFiltrados[i].email;
+            celulaEmail.innerText = contatos[i].email;
             linha.appendChild(celulaEmail);
             let celulaDataNasc = document.createElement('td');
-            celulaDataNasc.innerText = this.contatosFiltrados[i].dataNascimento;
+            celulaDataNasc.innerText = contatos[i].dataNascimento;
             linha.appendChild(celulaDataNasc);
 
             // Adiciona a nova linha no corpo da tabela
@@ -126,21 +150,21 @@ class ContatoView {
         return corpoTabela;
     }
 
-    renderizarCardsContatos() {
-        if (this.contatosFiltrados.length > 0) {
-            let areaListagemContatos =
-                document.getElementById('cardsContatos');
+    renderizarCardsContatos(contatos) {
+        let areaListagemContatos =
+            document.getElementById('cardsContatos');
 
-            /**
-             * Limpa a área de listagem
-             */
-            areaListagemContatos.innerHTML = '';
+        /**
+         * Limpa a área de listagem
+         */
+        areaListagemContatos.innerHTML = '';
 
+        if (contatos.length > 0) {
             /**
              * Ao invés de usar um loop,
              * utilizaremos a função forEach
              */
-            this.contatosFiltrados.forEach(function (contato) {
+            contatos.forEach(function (contato) {
                 let card = document.createElement('div');
                 let inicialNome = document.createElement('span');
                 inicialNome.innerText = contato.nome.charAt(0);
@@ -161,37 +185,28 @@ class ContatoView {
                 card.appendChild(dataNasc);
                 areaListagemContatos.appendChild(card);
             });
-
+        } else {
+            let spanMensagem = document.createElement('span');
+            spanMensagem.innerText = 'Nenhum contato encontrado';
+            areaListagemContatos.appendChild(spanMensagem);
         }
     }
 
     filtrarContatos() {
-        // Se tiver pelo menos um contato...
-        if (this.contatos.length > 0) {
-            let filtro = document.getElementById('filtro').value;
-            filtro = filtro.toLowerCase();
 
-            /**
-             * Filtra os contatos de acordo
-             * com o texto digitado pelo 
-             * usuário no campo de filtro
-             */
-            this.contatosFiltrados = this.contatos.filter(function (contato) {
-                let nome = contato.nome.toLowerCase();
-                let email = contato.email.toLowerCase();
+        let filtro = document.getElementById('filtro').value;
+        filtro = filtro.toLowerCase();
+        console.log(filtro);
 
-                /**
-                 * Se o nome ou o e-mail do contato
-                 * conter o filtro do usuário, retorno
-                 * o contato
-                 */
-                if (nome.includes(filtro) || email.includes(filtro)) {
-                    return contato;
-                }
-            });
+        /**
+         * Filtra os contatos de acordo
+         * com o texto digitado pelo 
+         * usuário no campo de filtro
+         */
+        let contatos = this.controller.filtrar(filtro);
 
-            renderizarCardsContatos();
-            renderizarTabelaContatos();
-        }
+        this.renderizarCardsContatos(contatos);
+        this.renderizarTabelaContatos(contatos);
+
     }
 }

@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/**
+  * No Sass, as variáveis
+  * iniciam com $
+  */
+@font-face {
+  font-family: "decorativa";
+  src: url(../fonts/Pacifico-Regular.ttf);
+}
+@font-face {
+  font-family: "padrao";
+  src: url(../fonts/Lato-Regular.ttf);
+}
+body {
+  margin: 0px;
+}
+
+#header {
+  background-color: #1ba39c;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+#header * {
+  display: inline;
+  vertical-align: middle;
+}
+#header img {
+  width: 70px;
+  margin-right: 20px;
+}
+#header h1 {
+  font-family: "decorativa";
+  color: white;
+  text-shadow: 1px 1px #95a5a6;
+}
+
+#formularioItem {
+  padding: 10px;
+  border-bottom: 1px solid #bebcbc;
+  box-shadow: 0px 1px #dbd9d9;
+  width: 90%;
+  margin: auto;
+}
+#formularioItem label,
+#formularioItem input,
+#formularioItem select {
+  display: block;
+  font-family: "padrao";
+}
+#formularioItem select {
+  width: 95%;
+  max-width: 300px;
+}
+#formularioItem select,
+#formularioItem input {
+  margin-bottom: 10px;
+  height: 30px;
+  font-size: 100%;
+  border-radius: 5px;
+  border: 1px solid #1ba39c;
+  padding-left: 5px;
+}
+#formularioItem select[type=number],
+#formularioItem input[type=number] {
+  width: 95%;
+  max-width: 80px;
+}
+
+#tabelaItens {
+  margin: 10px auto;
+  width: 95%;
+}
+#tabelaItens table {
+  border-collapse: collapse;
+  margin: 0px auto 50px auto;
+  width: 100%;
+  font-family: "padrao";
+}
+#tabelaItens table thead {
+  background-color: #1ba39c;
+  color: white;
+}
+#tabelaItens table tr:hover td {
+  background-color: #d7f2ec;
+}
+#tabelaItens table tr:nth-child(even) {
+  background-color: #e5e2ec;
+}
+#tabelaItens table tr td {
+  font-size: 90%;
+}
+#tabelaItens table tr th,
+#tabelaItens table tr td {
+  text-align: center;
+  padding: 5px 0px;
+}
+#tabelaItens table tr th:first-child,
+#tabelaItens table tr td:first-child {
+  text-align: left;
+  padding-left: 5px;
+}
+#tabelaItens table tr th:last-child,
+#tabelaItens table tr td:last-child {
+  text-align: right;
+  padding-right: 5px;
+}
+
+#cardsItens {
+  display: none;
+  padding: 5px 0px;
+}
+#cardsItens div {
+  box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
+  border-radius: 5px;
+  margin: 0px auto 10px auto;
+  width: 90%;
+  padding: 14px 7px 7px 7px;
+}
+#cardsItens div span {
+  font-family: "padrao";
+  font-size: 80%;
+  display: block;
+  text-indent: 40px;
+}
+#cardsItens div span:first-child, #cardsItens div span:nth-child(2) {
+  text-indent: 0px;
+  display: inline-block;
+  font-size: 100%;
+  margin-bottom: -5px;
+}
+#cardsItens div span:first-child {
+  background-color: #019875;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+
+#filtro {
+  margin: 30px auto 10px auto;
+  display: block;
+  border-radius: 20px;
+  width: 50%;
+  height: 30px;
+  border: 1px solid #cccccc;
+  outline: none;
+  padding: 0px 20px 0px 20px;
+  font-size: 90%;
+}
+#filtro:hover {
+  border: none;
+  box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
+  margin-bottom: 12px;
+}
+
+@media only screen and (max-width: 600px) {
+  #cardsItens {
+    display: block;
+  }
+
+  #tabelaItens {
+    display: none;
+  }
+
+  #filtro {
+    width: 70%;
+  }
+}
+
+/*# sourceMappingURL=estilos.css.map */
