@@ -1,0 +1,101 @@
+UN	Abacaxi
+PCT	Absorvente
+
+KG	Achocolatado em pó
+Kg	Açúcar
+Litro	Água Sanitária
+UN	Alcaparras
+UN	Álcool em gel
+Maço	Alface
+Kg	Alho
+Kg	Arroz
+UN	Azeite de Oliva
+KG	Azeitona
+Kg	Banana
+KG	Batata
+PCT	Batata Palha
+KG	Beterraba
+PCT	Bolacha
+Kg	Café
+KG	Calabresa
+KG	Carne Bovina
+KG	Carne Suina
+KG	Carvão
+Kg	Cebola
+KG	Cenoura
+UN	Cerveja
+CX	Chá
+Maço	Cheiro-verde
+kg	Chocolate
+UN	condicionador
+PCT	Copo descartável
+Kg	coxa sobre coxa
+UN	creme de leite
+UN	Creme dental
+UN	Iogurte
+Litro	Desinfetante
+KG	Erva Tereré
+KG	Ervilha em conserva
+UN	Escova de dente
+Kg	extrato de tomate
+Kg	Farinha de mandioca
+Kg	Feijão
+UN	Fermento Quimico
+UN	Fio dental
+CX	Fósforo
+Kg	Frango
+Kg	Fubá
+UN	Gel de cabelo
+Un	Hot Pocket
+kg	Laranja
+Litro	Leite
+CX	Leite Condensado
+KG	Lenha
+Kg	Limão
+PCT	Luva de latex
+Kg	Maçã
+Kg	Macarrão
+UN	Macarrão instantaneo
+KG	Mamão
+Kg	Manteiga
+Kg	Margarina
+Kg	Melancia
+KG	Melão
+KG	Milho verde em conserva
+PCT	Mistura de bolo
+L	Molho de Pimenta
+L	Molho de Soja
+KG	Mussarela
+UN	Óleo de soja
+DZ	Ovos
+UN	Pá de lixo
+KG	Palmito
+UN	Pano de chão
+UN	Pão
+UN	Papel Alumínio
+PCT	papel higiênico
+UN	Papel Manteiga
+KG	Peixe
+KG	Pêra
+G	Pimenta do Reino
+KG	Pimentão
+KG	Milho de pipoca
+UN	Plástico filme
+KG	Presunto
+KG	Rabanete
+UN	refrigerante
+UN	Rodo
+Maço	Rúcula
+KG	Sabão em barra
+Kg	Sabão em pó
+UN	Sabonete
+PCT	Saco de lixo
+KG	Sal
+UN	Shampoo
+UN	Steak de Frango
+Kg	Tomate
+Kg	Farinha de Trigo
+KG	Uva
+UN	Vassoura
+UN	Vinagre
+UN	Vinho

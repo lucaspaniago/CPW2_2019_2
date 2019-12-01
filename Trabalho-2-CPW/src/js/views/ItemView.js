@@ -1,12 +1,13 @@
 class ItemView {
 
     constructor(itens) {
+        this.compras = [];
         this.controller = new ItemController(itens);
-        this.renderizarCardsItens(itens);
-        this.renderizarTabelaItens(itens);
+        this.renderizarCardsCompras(this.compras);
+        this.renderizarTabelaCompras(this.compras);
     }
 
-    salvarItem(event) {
+    salvarCompra(event) {
         // Inibe a recarga da página
         event.preventDefault();
 
@@ -19,24 +20,26 @@ class ItemView {
         let quantidade = $('#quantidade').val();
 
         // Cria um objeto de item
-        let item = new Item(
-            itemSelecionado, quantidade);
+        let item = this.controller.buscarItem(itemSelecionado);//new Item(itemSelecionado, quantidade);
+
+        // Cria um objeto de compra
+        let compra = new Compra(item, quantidade);
 
         // Adiciona o item no nosso BD (no final do vetor)
-        this.controller.salvar(item);
+        this.controller.salvar(compra);
 
         this.limparFormulario();
 
-        let itens = this.controller.recuperarTodos();
+        let compras = this.controller.recuperarTodas();
 
         // Limpa o filtro
         document.getElementById('filtro').value = '';
 
         // Invoca a renderização da tabela
-        this.renderizarTabelaItens(itens);
+        this.renderizarTabelaCompras(compras);
 
         // Invoca a renderização dos cards
-        this.renderizarCardsItens(itens);
+        this.renderizarCardsCompras(compras);
     }
 
     /**
@@ -47,18 +50,19 @@ class ItemView {
             'item',
             'quantidade'
         ].forEach(id => document.getElementById(id).value = '');
+
+        document.getElementById('unidadeDeMedida').innerText = '';
     }
 
-    renderizarTabelaItens(itens) {
-        let areaListagemItens =
-            document.getElementById('tabelaItens');
+    renderizarTabelaCompras(compras) {
+        let areaListagemCompras = document.getElementById('tabelaCompras');
 
         /**
          * Limpa a área de listagem
          */
-        areaListagemItens.innerHTML = '';
+        areaListagemCompras.innerHTML = '';
 
-        if (itens.length > 0) {
+        if (compras.length > 0) {
             /**
              * Cria a tabela
              */
@@ -68,23 +72,23 @@ class ItemView {
             // Adiciona o cabeçalho dentro da tabela
             tabela.appendChild(cabecalho);
 
-            let corpoTabela = this.criarCorpoTabela(itens);
+            let corpoTabela = this.criarCorpoTabela(compras);
             // Adiciona o corpo da tabela na tabela
             tabela.appendChild(corpoTabela);
 
             // Adiciona a tabela na área de listagem
-            areaListagemItens.appendChild(tabela);
+            areaListagemCompras.appendChild(tabela);
         } else {
             let spanMensagem = document.createElement('span');
             spanMensagem.innerText = 'Nenhum item encontrado';
-            areaListagemItens.appendChild(spanMensagem);
+            areaListagemCompras.appendChild(spanMensagem);
         }
     }
 
     criarCabecalhoTabela() {
         /**
-        * Cria o cabeçalho da tabela
-        */
+         * Cria o cabeçalho da tabela
+         */
         let cabecalho = document.createElement('thead');
         let linhaCabecalho = document.createElement('tr');
         let colunaCheck = document.createElement('th');
@@ -106,16 +110,16 @@ class ItemView {
         return cabecalho;
     }
 
-    criarCorpoTabela(itens) {
+    criarCorpoTabela(compras) {
         /**
          * Cria o corpo da tabela
          */
         let corpoTabela = document.createElement('tbody');
 
         /**
-         * Cria a linhas de itens
+         * Cria a linhas de compras
          */
-        for (let i = 0; i < itens.length; i++) {
+        for (let i = 0; i < compras.length; i++) {
             /**
              * Cria uma nova linha no corpo da tabela
              */
@@ -124,9 +128,10 @@ class ItemView {
             let celulaCheck = document.createElement('td');
             celulaCheck.innerText = 'Check';
             linha.appendChild(celulaCheck);
-            let celulaItem = document.createElement('td');
-            celulaItem.innerText = itens[i].unidadeDeMedida + ' de ' + itens[i].descricao;
-            linha.appendChild(celulaItem);
+            let celulaCompra = document.createElement('td');
+            celulaCompra.innerText = compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + 
+            ' de ' + compras[i].item.descricao;
+            linha.appendChild(celulaCompra);
             let celulaExcluir = document.createElement('td');
             celulaExcluir.innerText = 'Excluir';
             linha.appendChild(celulaExcluir);
@@ -138,54 +143,71 @@ class ItemView {
         return corpoTabela;
     }
 
-    renderizarCardsItens(itens) {
-        let areaListagemItens =
-            document.getElementById('cardsItens');
+    renderizarCardsCompras(compras) {
+        let areaListagemCompras = document.getElementById('cardsCompras');
 
         /**
          * Limpa a área de listagem
          */
-        areaListagemItens.innerHTML = '';
+        areaListagemCompras.innerHTML = '';
 
-        if (itens.length > 0) {
+        if (compras.length > 0) {
             /**
              * Ao invés de usar um loop,
              * utilizaremos a função forEach
              */
-            itens.forEach(function (item) {
+            compras.forEach(function (compra) {
                 let card = document.createElement('div');
                 let inicialDescricao = document.createElement('span');
-                inicialDescricao.innerText = item.descricao.charAt(0);
+                inicialDescricao.innerText = compra.item.descricao.charAt(0);
                 let descricao = document.createElement('span');
-                let tamanhoDescricao = item.descricao.length;
-                descricao.innerText = item.descricao.substr(1, tamanhoDescricao);
+                let tamanhoDescricao = compra.item.descricao.length;
+                descricao.innerText = compra.item.descricao.substr(1, tamanhoDescricao);
 
                 card.appendChild(inicialDescricao);
                 card.appendChild(descricao);
-                areaListagemItens.appendChild(card);
+                areaListagemCompras.appendChild(card);
             });
         } else {
             let spanMensagem = document.createElement('span');
             spanMensagem.innerText = 'Nenhum item encontrado';
-            areaListagemItens.appendChild(spanMensagem);
+            areaListagemCompras.appendChild(spanMensagem);
         }
     }
 
-    filtrarItens() {
+    filtrarCompras() {
 
         let filtro = document.getElementById('filtro').value;
         filtro = filtro.toLowerCase();
         console.log(filtro);
 
         /**
-         * Filtra os Itens de acordo
+         * Filtra as Compras de acordo
          * com o texto digitado pelo 
          * usuário no campo de filtro
          */
-        let itens = this.controller.filtrar(filtro);
+        let compras = this.controller.filtrar(filtro);
 
-        this.renderizarCardsItens(itens);
-        this.renderizarTabelaItens(itens);
+        this.renderizarCardsCompras(compras);
+        this.renderizarTabelaCompras(compras);
 
+    }
+
+    carregarUnidadeDeMedida(event) {
+        // Inibe a recarga da página
+        event.preventDefault();
+
+        /**
+         * $ -> document.querySelector
+         * val() -> value
+         */
+        // Recupera os valores do formulário
+        let itemSelecionado = $('#item').val();
+        //let quantidade = $('#quantidade').val();
+
+        console.log(itemSelecionado);
+
+        let unidadeDeMedida = document.getElementById('unidadeDeMedida');
+        unidadeDeMedida.innerText = this.controller.buscarUnidadeDeMedida(itemSelecionado);
     }
 }

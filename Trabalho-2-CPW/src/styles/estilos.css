@@ -47,9 +47,19 @@ body {
   display: block;
   font-family: "padrao";
 }
+#formularioItem #quantidade,
+#formularioItem #unidadeDeMedida {
+  display: inline-block;
+}
+#formularioItem #unidadeDeMedida {
+  font-family: "padrao";
+}
 #formularioItem select {
   width: 95%;
   max-width: 300px;
+}
+#formularioItem select:disabled {
+  color: gray;
 }
 #formularioItem select,
 #formularioItem input {
@@ -66,69 +76,69 @@ body {
   max-width: 80px;
 }
 
-#tabelaItens {
+#tabelaCompras {
   margin: 10px auto;
   width: 95%;
 }
-#tabelaItens table {
+#tabelaCompras table {
   border-collapse: collapse;
   margin: 0px auto 50px auto;
   width: 100%;
   font-family: "padrao";
 }
-#tabelaItens table thead {
+#tabelaCompras table thead {
   background-color: #1ba39c;
   color: white;
 }
-#tabelaItens table tr:hover td {
+#tabelaCompras table tr:hover td {
   background-color: #d7f2ec;
 }
-#tabelaItens table tr:nth-child(even) {
+#tabelaCompras table tr:nth-child(even) {
   background-color: #e5e2ec;
 }
-#tabelaItens table tr td {
+#tabelaCompras table tr td {
   font-size: 90%;
 }
-#tabelaItens table tr th,
-#tabelaItens table tr td {
+#tabelaCompras table tr th,
+#tabelaCompras table tr td {
   text-align: center;
   padding: 5px 0px;
 }
-#tabelaItens table tr th:first-child,
-#tabelaItens table tr td:first-child {
+#tabelaCompras table tr th:first-child,
+#tabelaCompras table tr td:first-child {
   text-align: left;
   padding-left: 5px;
 }
-#tabelaItens table tr th:last-child,
-#tabelaItens table tr td:last-child {
+#tabelaCompras table tr th:last-child,
+#tabelaCompras table tr td:last-child {
   text-align: right;
   padding-right: 5px;
 }
 
-#cardsItens {
+#cardsCompras {
   display: none;
   padding: 5px 0px;
 }
-#cardsItens div {
+#cardsCompras div {
   box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
   border-radius: 5px;
   margin: 0px auto 10px auto;
   width: 90%;
   padding: 14px 7px 7px 7px;
 }
-#cardsItens div span {
+#cardsCompras div span {
   font-family: "padrao";
   font-size: 80%;
   display: block;
   text-indent: 40px;
 }
-#cardsItens div span:first-child, #cardsItens div span:nth-child(2) {
+#cardsCompras div span:first-child, #cardsCompras div span:nth-child(2) {
   text-indent: 0px;
   display: inline-block;
   font-size: 100%;
   margin-bottom: -5px;
 }
-#cardsItens div span:first-child {
+#cardsCompras div span:first-child {
   background-color: #019875;
   color: white;
   padding: 10px 15px;
@@ -154,11 +164,11 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  #cardsItens {
+  #cardsCompras {
     display: block;
   }
 
-  #tabelaItens {
+  #tabelaCompras {
     display: none;
   }
 

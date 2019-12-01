@@ -21,31 +21,30 @@
     </div>
 
     <div id="formularioItem">
-        <form onsubmit="itemView.salvarItem(event)">
+        <form onsubmit="itemView.salvarCompra(event)">
             <label for="item">Item</label>
-            <select required id="item" name="item">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+            <!-- depois melhorar o select com https://www.youtube.com/watch?v=MFUyTAaT_mg-->
+            <select onchange="itemView.carregarUnidadeDeMedida(event)" required id="item" name="item">
+                <option value="" disabled selected>Selecione um item...</option>
             </select>
 
             <label for="quantidade">Quantidade</label>
             <input type="number" name="quantidade" id="quantidade">
+            <div id="unidadeDeMedida">unidade de medida</div>
 
             <input type="submit" value="Incluir">
         </form>
     </div>
 
-    <input onkeyup="itemView.filtrarItens()" placeholder="Digite o nome ou e-mail" type="text" id="filtro">
+    <input onkeyup="itemView.filtrarCompras()" placeholder="Procure por um item do seu carrinho" type="text" id="filtro">
 
-    <div id="cardsItens"></div>
-    <div id="tabelaItens"></div>
-
+    <div id="cardsCompras"></div>
+    <div id="tabelaCompras"></div>
 
     <script src="src/js/mascaras.js"></script>
     <script src="src/js/helpers/DataHelper.js"></script>
     <script src="src/js/models/Item.js"></script>
+    <script src="src/js/models/Compra.js"></script>
     <script src="src/js/controllers/ItemController.js"></script>
     <script src="src/js/views/ItemView.js"></script>
     <script src="src/js/index.js"></script>
