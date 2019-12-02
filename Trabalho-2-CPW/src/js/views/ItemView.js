@@ -1,7 +1,7 @@
 class ItemView {
 
     constructor(itens) {
-        this.compras = [];
+        //this.compras = [];
         this.controller = new ItemController(itens);
         this.renderizarCardsCompras(this.compras);
         this.renderizarTabelaCompras(this.compras);
@@ -89,7 +89,7 @@ class ItemView {
          */
         areaListagemCompras.innerHTML = '';
 
-        if (compras.length > 0) {
+        if (this.controller.compras.length > 0) {
             /**
              * Cria a tabela
              */
@@ -194,7 +194,7 @@ class ItemView {
          */
         areaListagemCompras.innerHTML = '';
 
-        if (compras.length > 0) {
+        if (this.controller.compras.length > 0) {
             /**
              * Ao invés de usar um loop,
              * utilizaremos a função forEach
