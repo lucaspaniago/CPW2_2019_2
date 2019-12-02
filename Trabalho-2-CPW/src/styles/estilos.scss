@@ -79,118 +79,141 @@ body {
   }
 }
 
-#tabelaCompras {
-  margin: 10px auto;
-  width: 95%;
+#conteudo {
+  padding: 10px;
+  //border: 1px solid $cor-borda;
+  //box-shadow: 2px 2px #95a5a6;
+  //border-bottom: 1px solid rgb(190, 188, 188);
+  //box-shadow: 0px 1px rgb(219, 217, 217);
+  //border-radius: 5px;
+  width: 90%;
+  margin: auto;
 
-  table {
-    border-collapse: collapse;
-    margin: 0px auto 50px auto;
-    width: 100%;
-    font-family: $fonte-padrao;
+  #tabelaCompras {
+    padding: 10px;
+    width: 90%;
+    //margin: auto;
     //text-align: left;
 
-    thead {
-      background-color: $cor-header;
-      color: white;
-    }
-
-    tr {
-      &:hover {
-        td {
-          background-color: $cor-sombras;
-        }
-      }
-
-      &:nth-child(even) {
-        background-color: rgb(229, 226, 236);
-      }
-
-      td {
-        font-size: 90%;
-      }
-
-      th,
-      td {
-        // Regra geral
-        text-align: center;
-        padding: 5px 0px;
-        //border: 1px solid blue;
-
-        // Regra específica para a primeira coluna
-        &:first-child {
-          text-align: left;
-          padding-left: 5px;
-        }
-
-        // Regra específica para a última coluna
-        &:last-child {
-          text-align: right;
-          padding-right: 5px;
-        }
-      }
-    }
-  }
-}
-
-//Estilização dos cards
-
-#cardsCompras {
-  display: none;
-  padding: 5px 0px;
-  // Cada div representa um card
-  div {
-    //border: 1px solid #95a5a6;
-    box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
-    border-radius: 5px;
-    margin: 0px auto 10px auto;
-    width: 90%;
-    padding: 14px 7px 7px 7px;
-
-    span {
+    table {
+      border-collapse: collapse;
+      //margin: 0px auto 50px auto;
+      width: 50%;
       font-family: $fonte-padrao;
-      font-size: 80%;
-      display: block;
-      text-indent: 40px;
 
-      &:first-child,
-      &:nth-child(2) {
-        text-indent: 0px;
-        display: inline-block;
-        font-size: 100%;
-        margin-bottom: -5px;
+      thead {
+        background-color: $cor-header;
+        color: white;
       }
 
-      &:first-child {
-        background-color: $cor-botao-primario;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 50%;
-        margin-right: 3px;
+      tr {
+        &:hover {
+          td {
+            background-color: $cor-sombras;
+          }
+        }
+
+        &:nth-child(even) {
+          background-color: rgb(229, 226, 236);
+        }
+
+        td {
+          font-size: 90%;
+
+          &:first-child {
+            width: 10%;
+          }
+          &:last-child {
+            width: 10%;
+          }
+        }
+
+        th,
+        td {
+          // Regra geral
+          text-align: left;
+          padding: 5px 0px;
+          //border: 1px solid blue;
+
+          // Regra específica para a primeira coluna
+          &:first-child {
+            text-align: left;
+            padding-left: 5px;
+          }
+
+          // Regra específica para a última coluna
+          &:last-child {
+            text-align: right;
+            padding-right: 5px;
+          }
+
+          img {
+            width: 90%;
+          }
+        }
       }
     }
   }
-}
 
-// Campo de filtro
+  //Estilização dos cards
 
-#filtro {
-  margin: 30px auto 10px auto;
-  display: block;
-  border-radius: 20px;
-  width: 50%;
-  height: 30px;
-  border: 1px solid #cccccc;
-  outline: none;
-  padding: 0px 20px 0px 20px;
+  #cardsCompras {
+    display: none;
+    padding: 5px 0px;
+    // Cada div representa um card
+    div {
+      //border: 1px solid #95a5a6;
+      box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
+      border-radius: 5px;
+      margin: 0px auto 10px auto;
+      width: 90%;
+      padding: 14px 7px 7px 7px;
 
-  //text-indent: 20px;
-  font-size: 90%;
+      span {
+        font-family: $fonte-padrao;
+        font-size: 80%;
+        display: block;
+        text-indent: 40px;
 
-  &:hover {
-    border: none;
-    box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
-    margin-bottom: 12px;
+        &:first-child,
+        &:nth-child(2) {
+          text-indent: 0px;
+          display: inline-block;
+          font-size: 100%;
+          margin-bottom: -5px;
+        }
+
+        &:first-child {
+          background-color: $cor-botao-primario;
+          color: white;
+          padding: 10px 15px;
+          border-radius: 50%;
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+
+  // Campo de filtro
+
+  #filtro {
+    margin: 30px 0px 10px 0px;
+    display: block;
+    border-radius: 20px;
+    width: 40%;
+    height: 30px;
+    border: 1px solid #cccccc;
+    outline: none;
+    padding: 0px 20px 0px 20px;
+
+    //text-indent: 20px;
+    font-size: 90%;
+
+    &:hover {
+      border: none;
+      box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
+      margin-bottom: 12px;
+    }
   }
 }
 

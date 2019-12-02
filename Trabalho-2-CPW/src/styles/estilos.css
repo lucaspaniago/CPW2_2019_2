@@ -76,88 +76,100 @@ body {
   max-width: 80px;
 }
 
-#tabelaCompras {
-  margin: 10px auto;
-  width: 95%;
+#conteudo {
+  padding: 10px;
+  width: 90%;
+  margin: auto;
 }
-#tabelaCompras table {
+#conteudo #tabelaCompras {
+  padding: 10px;
+  width: 90%;
+}
+#conteudo #tabelaCompras table {
   border-collapse: collapse;
-  margin: 0px auto 50px auto;
-  width: 100%;
+  width: 50%;
   font-family: "padrao";
 }
-#tabelaCompras table thead {
+#conteudo #tabelaCompras table thead {
   background-color: #1ba39c;
   color: white;
 }
-#tabelaCompras table tr:hover td {
+#conteudo #tabelaCompras table tr:hover td {
   background-color: #d7f2ec;
 }
-#tabelaCompras table tr:nth-child(even) {
+#conteudo #tabelaCompras table tr:nth-child(even) {
   background-color: #e5e2ec;
 }
-#tabelaCompras table tr td {
+#conteudo #tabelaCompras table tr td {
   font-size: 90%;
 }
-#tabelaCompras table tr th,
-#tabelaCompras table tr td {
-  text-align: center;
+#conteudo #tabelaCompras table tr td:first-child {
+  width: 10%;
+}
+#conteudo #tabelaCompras table tr td:last-child {
+  width: 10%;
+}
+#conteudo #tabelaCompras table tr th,
+#conteudo #tabelaCompras table tr td {
+  text-align: left;
   padding: 5px 0px;
 }
-#tabelaCompras table tr th:first-child,
-#tabelaCompras table tr td:first-child {
+#conteudo #tabelaCompras table tr th:first-child,
+#conteudo #tabelaCompras table tr td:first-child {
   text-align: left;
   padding-left: 5px;
 }
-#tabelaCompras table tr th:last-child,
-#tabelaCompras table tr td:last-child {
+#conteudo #tabelaCompras table tr th:last-child,
+#conteudo #tabelaCompras table tr td:last-child {
   text-align: right;
   padding-right: 5px;
 }
-
-#cardsCompras {
+#conteudo #tabelaCompras table tr th img,
+#conteudo #tabelaCompras table tr td img {
+  width: 90%;
+}
+#conteudo #cardsCompras {
   display: none;
   padding: 5px 0px;
 }
-#cardsCompras div {
+#conteudo #cardsCompras div {
   box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
   border-radius: 5px;
   margin: 0px auto 10px auto;
   width: 90%;
   padding: 14px 7px 7px 7px;
 }
-#cardsCompras div span {
+#conteudo #cardsCompras div span {
   font-family: "padrao";
   font-size: 80%;
   display: block;
   text-indent: 40px;
 }
-#cardsCompras div span:first-child, #cardsCompras div span:nth-child(2) {
+#conteudo #cardsCompras div span:first-child, #conteudo #cardsCompras div span:nth-child(2) {
   text-indent: 0px;
   display: inline-block;
   font-size: 100%;
   margin-bottom: -5px;
 }
-#cardsCompras div span:first-child {
+#conteudo #cardsCompras div span:first-child {
   background-color: #019875;
   color: white;
   padding: 10px 15px;
   border-radius: 50%;
   margin-right: 3px;
 }
-
-#filtro {
-  margin: 30px auto 10px auto;
+#conteudo #filtro {
+  margin: 30px 0px 10px 0px;
   display: block;
   border-radius: 20px;
-  width: 50%;
+  width: 40%;
   height: 30px;
   border: 1px solid #cccccc;
   outline: none;
   padding: 0px 20px 0px 20px;
   font-size: 90%;
 }
-#filtro:hover {
+#conteudo #filtro:hover {
   border: none;
   box-shadow: 2px 2px 5px #cccccc, -1px -1px 3px #cccccc;
   margin-bottom: 12px;

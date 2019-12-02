@@ -17,5 +17,10 @@ class Compra {
          */
         this.item = item;
         this.quantidade = quantidade;
+        this.check = false;
+
+        if(quantidade > 1 && this.item.unidadeDeMedida != 'kg') {
+            this.item.unidadeDeMedida = this.item.unidadeDeMedida + 's';
+        }
     }
 }

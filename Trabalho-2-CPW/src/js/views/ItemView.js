@@ -20,20 +20,47 @@ class ItemView {
         let quantidade = $('#quantidade').val();
 
         // Cria um objeto de item
-        let item = this.controller.buscarItem(itemSelecionado);//new Item(itemSelecionado, quantidade);
+        let item = this.controller.buscarItem(itemSelecionado); //new Item(itemSelecionado, quantidade);
 
         // Cria um objeto de compra
         let compra = new Compra(item, quantidade);
 
-        // Adiciona o item no nosso BD (no final do vetor)
-        this.controller.salvar(compra);
+        if (this.controller.buscarCompra(item.id)) {
+            this.controller.alterarQuantidade(item.id, quantidade);
+        } else {
+            // Adiciona o item no nosso BD (no final do vetor)
+            this.controller.salvar(compra);
+        }
 
         this.limparFormulario();
+
+        // Limpa o step do input number
+        if (compra.item.unidadeDeMedida == 'kg') {
+            let inputNumber = document.getElementById('quantidade');
+            inputNumber.removeAttribute('step');
+        }
 
         let compras = this.controller.recuperarTodas();
 
         // Limpa o filtro
         document.getElementById('filtro').value = '';
+
+        // Invoca a renderização da tabela
+        this.renderizarTabelaCompras(compras);
+
+        // Invoca a renderização dos cards
+        this.renderizarCardsCompras(compras);
+    }
+
+    removerCompra(event, id) {
+        // Inibe a recarga da página
+        event.preventDefault();
+
+        let compra = this.controller.buscarCompra(id);
+
+        this.controller.removerCompra(compra);
+
+        let compras = this.controller.recuperarTodas();
 
         // Invoca a renderização da tabela
         this.renderizarTabelaCompras(compras);
@@ -68,9 +95,9 @@ class ItemView {
              */
             let tabela = document.createElement('table');
 
-            let cabecalho = this.criarCabecalhoTabela();
+            //let cabecalho = this.criarCabecalhoTabela();
             // Adiciona o cabeçalho dentro da tabela
-            tabela.appendChild(cabecalho);
+            //tabela.appendChild(cabecalho);
 
             let corpoTabela = this.criarCorpoTabela(compras);
             // Adiciona o corpo da tabela na tabela
@@ -79,9 +106,15 @@ class ItemView {
             // Adiciona a tabela na área de listagem
             areaListagemCompras.appendChild(tabela);
         } else {
-            let spanMensagem = document.createElement('span');
-            spanMensagem.innerText = 'Nenhum item encontrado';
-            areaListagemCompras.appendChild(spanMensagem);
+            if (this.controller.carrinhoVazio()) {
+                let spanMensagem = document.createElement('span');
+                spanMensagem.innerText = 'Comece logo sua lista de compras, antes que esqueça de algo!';
+                areaListagemCompras.appendChild(spanMensagem);
+            } else {
+                let spanMensagem = document.createElement('span');
+                spanMensagem.innerText = 'Ops! Não consegui achar nenhum item parecido com essa descrição em sua lista de compras.';
+                areaListagemCompras.appendChild(spanMensagem);
+            }
         }
     }
 
@@ -92,7 +125,7 @@ class ItemView {
         let cabecalho = document.createElement('thead');
         let linhaCabecalho = document.createElement('tr');
         let colunaCheck = document.createElement('th');
-        colunaCheck.innerText = 'Check';
+        colunaCheck.innerText = 'Confirmar';
         let colunaItem = document.createElement('th');
         colunaItem.innerText = 'Item';
         let colunaExcluir = document.createElement('th');
@@ -126,14 +159,19 @@ class ItemView {
             let linha = document.createElement('tr');
 
             let celulaCheck = document.createElement('td');
-            celulaCheck.innerText = 'Check';
+            if (compras[i].check == false) {
+                celulaCheck.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.checar(event, \'' + compras[i].item.id + '\')"><img title="Clique para confirmar que este item já foi adicionado ao carrinho de compras" src="src/img/check.png" alt="Carrinho de compra com a opção de Checar o item"></a>';
+            } else {
+                celulaCheck.innerHTML = '<a id="' + compras[i].item.id + '\')"><img title="Item já adicionado ao carrinho de compras" src="src/img/checked.png" alt="Carrinho de compra com um simbolo de checado"></a>';
+            }
+
             linha.appendChild(celulaCheck);
             let celulaCompra = document.createElement('td');
-            celulaCompra.innerText = compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + 
-            ' de ' + compras[i].item.descricao;
+            celulaCompra.innerText = compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida +
+                ' de ' + compras[i].item.descricao;
             linha.appendChild(celulaCompra);
             let celulaExcluir = document.createElement('td');
-            celulaExcluir.innerText = 'Excluir';
+            celulaExcluir.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.removerCompra(event, \'' + compras[i].item.id + '\')"><img title="Clique para remover este item do carrinho de compras" src="src/img/remover.png" alt="Carrinho de compra com simbolo que remete à remoção deste item">';
             linha.appendChild(celulaExcluir);
 
             // Adiciona a nova linha no corpo da tabela
@@ -169,9 +207,15 @@ class ItemView {
                 areaListagemCompras.appendChild(card);
             });
         } else {
-            let spanMensagem = document.createElement('span');
-            spanMensagem.innerText = 'Nenhum item encontrado';
-            areaListagemCompras.appendChild(spanMensagem);
+            if (this.controller.carrinhoVazio()) {
+                let spanMensagem = document.createElement('span');
+                spanMensagem.innerText = 'Comece logo sua lista de compras, antes que esqueça de algo!';
+                areaListagemCompras.appendChild(spanMensagem);
+            } else {
+                let spanMensagem = document.createElement('span');
+                spanMensagem.innerText = 'Nenhum item encontrado';
+                areaListagemCompras.appendChild(spanMensagem);
+            }
         }
     }
 
@@ -197,17 +241,28 @@ class ItemView {
         // Inibe a recarga da página
         event.preventDefault();
 
-        /**
-         * $ -> document.querySelector
-         * val() -> value
-         */
         // Recupera os valores do formulário
         let itemSelecionado = $('#item').val();
-        //let quantidade = $('#quantidade').val();
 
-        console.log(itemSelecionado);
+        //console.log(itemSelecionado);
 
-        let unidadeDeMedida = document.getElementById('unidadeDeMedida');
-        unidadeDeMedida.innerText = this.controller.buscarUnidadeDeMedida(itemSelecionado);
+        let divUnidadeDeMedida = document.getElementById('unidadeDeMedida');
+        let unidadeDeMedida = this.controller.buscarUnidadeDeMedida(itemSelecionado);
+        divUnidadeDeMedida.innerText = unidadeDeMedida
+
+        if (unidadeDeMedida == 'kg') {
+            let inputNumber = document.getElementById('quantidade');
+            inputNumber.setAttribute('step', '0.01');
+        }
+    }
+
+    checar(event, id) {
+        event.preventDefault();
+
+        this.controller.checarCompra(id);
+
+        let compras = this.controller.recuperarTodas();
+        this.renderizarCardsCompras(compras);
+        this.renderizarTabelaCompras(compras);
     }
 }
