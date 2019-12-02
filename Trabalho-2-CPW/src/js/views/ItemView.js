@@ -106,15 +106,20 @@ class ItemView {
             // Adiciona a tabela na área de listagem
             areaListagemCompras.appendChild(tabela);
         } else {
+            let img = document.createElement('img');
             if (this.controller.carrinhoVazio()) {
                 let spanMensagem = document.createElement('span');
                 spanMensagem.innerText = 'Comece logo sua lista de compras, antes que esqueça de algo!';
                 areaListagemCompras.appendChild(spanMensagem);
+                img.setAttribute('src', 'src/img/incluir.png');
             } else {
                 let spanMensagem = document.createElement('span');
                 spanMensagem.innerText = 'Ops! Não consegui achar nenhum item parecido com essa descrição em sua lista de compras.';
                 areaListagemCompras.appendChild(spanMensagem);
+                img.setAttribute('src', 'src/img/cesta_vazia.png');
             }
+            img.setAttribute('alt', 'Imagem com uma cesta de compras vazia');
+            areaListagemCompras.appendChild(img);
         }
     }
 
@@ -160,9 +165,9 @@ class ItemView {
 
             let celulaCheck = document.createElement('td');
             if (compras[i].check == false) {
-                celulaCheck.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.checar(event, \'' + compras[i].item.id + '\')"><img title="Clique para confirmar que este item já foi adicionado ao carrinho de compras" src="src/img/check.png" alt="Carrinho de compra com a opção de Checar o item"></a>';
+                celulaCheck.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.checar(event, \'' + compras[i].item.id + '\')"><img title="Clique para confirmar que já adicionou ' + compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + ' de ' + compras[i].item.descricao + ' ao carrinho de compras" src="src/img/check.png" alt="Carrinho de compra com a opção de confirmar que já pegou ' + compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + ' de ' + compras[i].item.descricao + '"></a>';
             } else {
-                celulaCheck.innerHTML = '<a id="' + compras[i].item.id + '\')"><img title="Item já adicionado ao carrinho de compras" src="src/img/checked.png" alt="Carrinho de compra com um simbolo de checado"></a>';
+                celulaCheck.innerHTML = '<a id="' + compras[i].item.id + '\')"><img title="' + compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + ' de ' + compras[i].item.descricao + ' já adicionado ao carrinho de compras" src="src/img/checked.png" alt="Carrinho de compra com um simbolo de checado"></a>';
             }
 
             linha.appendChild(celulaCheck);
@@ -171,7 +176,7 @@ class ItemView {
                 ' de ' + compras[i].item.descricao;
             linha.appendChild(celulaCompra);
             let celulaExcluir = document.createElement('td');
-            celulaExcluir.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.removerCompra(event, \'' + compras[i].item.id + '\')"><img title="Clique para remover este item do carrinho de compras" src="src/img/remover.png" alt="Carrinho de compra com simbolo que remete à remoção deste item">';
+            celulaExcluir.innerHTML = '<a href="" id="' + compras[i].item.id + '" onclick="itemView.removerCompra(event, \'' + compras[i].item.id + '\')"><img title="Clique para remover ' + compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + ' de ' + compras[i].item.descricao + ' do carrinho de compras" src="src/img/remover.png" alt="Carrinho de compra com simbolo que remete à remoção de ' + compras[i].quantidade + ' ' + compras[i].item.unidadeDeMedida + ' de ' + compras[i].item.descricao + ' da sua lista de compras ">';
             linha.appendChild(celulaExcluir);
 
             // Adiciona a nova linha no corpo da tabela
@@ -253,6 +258,10 @@ class ItemView {
         if (unidadeDeMedida == 'kg') {
             let inputNumber = document.getElementById('quantidade');
             inputNumber.setAttribute('step', '0.01');
+        } else {
+            document.getElementById('quantidade').value = '';
+            let inputNumber = document.getElementById('quantidade');
+            inputNumber.removeAttribute('step');
         }
     }
 

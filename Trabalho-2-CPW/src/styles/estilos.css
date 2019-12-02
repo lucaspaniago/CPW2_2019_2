@@ -16,9 +16,11 @@ body {
 }
 
 #header {
-  background-color: #1ba39c;
+  background-color: #f7fdff;
   padding: 10px 20px;
   margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  box-shadow: 0px 1px #dbd9d9;
 }
 #header * {
   display: inline;
@@ -30,7 +32,7 @@ body {
 }
 #header h1 {
   font-family: "decorativa";
-  color: white;
+  color: #0c302e;
   text-shadow: 1px 1px #95a5a6;
 }
 
@@ -67,7 +69,7 @@ body {
   height: 30px;
   font-size: 100%;
   border-radius: 5px;
-  border: 1px solid #1ba39c;
+  border: 1px solid #0c302e;
   padding-left: 5px;
 }
 #formularioItem select[type=number],
@@ -91,7 +93,7 @@ body {
   font-family: "padrao";
 }
 #conteudo #tabelaCompras table thead {
-  background-color: #1ba39c;
+  background-color: #f7fdff;
   color: white;
 }
 #conteudo #tabelaCompras table tr:hover td {
@@ -127,6 +129,15 @@ body {
 #conteudo #tabelaCompras table tr th img,
 #conteudo #tabelaCompras table tr td img {
   width: 90%;
+  margin: 0px;
+}
+#conteudo #tabelaCompras img {
+  margin-left: 40px;
+  display: block;
+  width: 20%;
+}
+#conteudo #tabelaCompras span {
+  font-family: "padrao";
 }
 #conteudo #cardsCompras {
   display: none;

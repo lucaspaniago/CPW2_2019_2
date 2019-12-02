@@ -9,6 +9,9 @@ body {
   background-color: $cor-header;
   padding: 10px 20px;
   margin-bottom: 10px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+  box-shadow: 0px 1px rgb(219, 217, 217);
+  
 
   * {
     display: inline;
@@ -22,7 +25,7 @@ body {
 
   h1 {
     font-family: $fonte-decorativa;
-    color: white;
+    color: $cor-borda;
     text-shadow: 1px 1px #95a5a6;
   }
 }
@@ -90,6 +93,7 @@ body {
   margin: auto;
 
   #tabelaCompras {
+    //border: solid 1px black;
     padding: 10px;
     width: 90%;
     //margin: auto;
@@ -149,9 +153,19 @@ body {
 
           img {
             width: 90%;
+            margin: 0px;
           }
         }
       }
+    }
+
+    img {
+      margin-left: 40px;
+      display: block;
+      width: 20%;
+    }
+    span {
+      font-family: $fonte-padrao;
     }
   }
 
