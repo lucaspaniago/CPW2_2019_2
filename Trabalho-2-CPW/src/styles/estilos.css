@@ -169,6 +169,15 @@ body {
   border-radius: 50%;
   margin-right: 3px;
 }
+#conteudo #cardsCompras img {
+  border: solid 1px black;
+  margin: auto;
+  display: block;
+  width: 70%;
+}
+#conteudo #cardsCompras span {
+  font-family: "padrao";
+}
 #conteudo #filtro {
   margin: 30px 0px 10px 0px;
   display: block;
@@ -187,16 +196,14 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  #cardsCompras {
+  #conteudo #cardsCompras {
     display: block;
   }
-
-  #tabelaCompras {
+  #conteudo #tabelaCompras {
     display: none;
   }
-
-  #filtro {
-    width: 70%;
+  #conteudo #filtro {
+    width: 90%;
   }
 }
 

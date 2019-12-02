@@ -11,7 +11,6 @@ body {
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(211, 211, 211);
   box-shadow: 0px 1px rgb(219, 217, 217);
-  
 
   * {
     display: inline;
@@ -173,6 +172,7 @@ body {
 
   #cardsCompras {
     display: none;
+    //border: solid 1px black;
     padding: 5px 0px;
     // Cada div representa um card
     div {
@@ -206,6 +206,15 @@ body {
         }
       }
     }
+    img {
+      border: solid 1px black;
+      margin: auto;
+      display: block;
+      width: 70%;
+    }
+    span {
+      font-family: $fonte-padrao;
+    }
   }
 
   // Campo de filtro
@@ -232,15 +241,17 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  #cardsCompras {
-    display: block;
-  }
+  #conteudo {
+    #cardsCompras {
+      display: block;
+    }
 
-  #tabelaCompras {
-    display: none;
-  }
+    #tabelaCompras {
+      display: none;
+    }
 
-  #filtro {
-    width: 70%;
+    #filtro {
+      width: 90%;
+    }
   }
 }

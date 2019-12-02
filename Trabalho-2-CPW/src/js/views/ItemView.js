@@ -199,28 +199,33 @@ class ItemView {
              * Ao invés de usar um loop,
              * utilizaremos a função forEach
              */
-            compras.forEach(function (compra) {
+            this.controller.compras.forEach(function (compra) {
                 let card = document.createElement('div');
                 let inicialDescricao = document.createElement('span');
                 inicialDescricao.innerText = compra.item.descricao.charAt(0);
                 let descricao = document.createElement('span');
                 let tamanhoDescricao = compra.item.descricao.length;
                 descricao.innerText = compra.item.descricao.substr(1, tamanhoDescricao);
-
                 card.appendChild(inicialDescricao);
                 card.appendChild(descricao);
                 areaListagemCompras.appendChild(card);
             });
         } else {
+
+            let img = document.createElement('img');
             if (this.controller.carrinhoVazio()) {
                 let spanMensagem = document.createElement('span');
                 spanMensagem.innerText = 'Comece logo sua lista de compras, antes que esqueça de algo!';
                 areaListagemCompras.appendChild(spanMensagem);
+                img.setAttribute('src', 'src/img/incluir.png');
             } else {
                 let spanMensagem = document.createElement('span');
                 spanMensagem.innerText = 'Nenhum item encontrado';
                 areaListagemCompras.appendChild(spanMensagem);
+                img.setAttribute('src', 'src/img/cesta_vazia.png');
             }
+            img.setAttribute('alt', 'Imagem com uma cesta de compras vazia');
+            areaListagemCompras.appendChild(img);
         }
     }
 
