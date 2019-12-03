@@ -1,0 +1,72 @@
+@import 'cores';
+@import 'fontes';
+
+body {
+    margin: 0;
+}
+
+
+
+#header {
+    background-color: white;
+    padding: 10px 20px;
+    //width: 100%;
+    margin-bottom: 5px;
+
+    * {
+        display: inline;
+        vertical-align: middle;
+
+    }
+}
+
+h1 {
+    font-family: $fonte-decorativa;
+    color: rgb(11, 16, 41);
+}
+
+
+#formularioLembrete {
+
+    padding: 10px;
+    border: 1px solid rgb(37, 48, 102);
+    width: 95%;
+    margin: auto;   
+
+    label,
+    input {
+        display: block;
+        font-family: $fonte-padrao;
+    }
+
+    input {
+        margin-bottom: 10px;
+
+        &[type=text] {
+            height: 25px;
+            width: 400px;
+            font-size: 100%;
+            /*Daqui para baixo e opcional*/
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            padding-left: 5px;
+        }
+
+        &[type=submit] {
+            border-radius: 5px;
+            padding: 10px 20px;
+            border: 1px solid #aaa;
+            background-color: rgb(41, 47, 75);
+            color: white;
+            border: none;
+        }
+    }
+}
+
+
+#listagemLembretes {
+    margin-top: 20px;
+    padding: 10px;
+    width: 95%;
+    margin: auto;
+}

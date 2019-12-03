@@ -1,0 +1,12 @@
+@font-face{
+    font-family: "decorativa";
+    src: url(../fonts/LobsterTwo-Regular.ttf);
+}
+
+@font-face{
+    font-family: "padrao";
+    src: url(../fonts/SourceSansPro-Regular.ttf);
+}
+
+$fonte-decorativa: "decorativa";
+$fonte-padrao: "padrao";

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="src/styles/estilos.css">
+    
+    <title>Lembrete</title>
+</head>
+
+<body>
+
+
+    <div id="header">
+        <h1>Lembretes</h1>
+    </div>
+
+    <div id="formularioLembrete">
+        <!--event para evitar de carregar -->
+        <form onsubmit="lembreteView.salvarLembrete(event)">
+            <form onsubmit="lembreteView.salvarLembrete(event)">
+                <label for="lembrete">Lembrete:</label>
+                <input required id="lembrete" name="lembrete" type="text">
+
+                <input type="submit" value="Salvar">
+
+            </form>
+
+    </div>
+
+    <div id="listagemLembretes"></div>
+
+    <script src="src/js/controllers/LembreteController.js"></script>
+    <script src="src/js/views/LembreteView.js"></script>
+    <script src="src/js/index.js"></script>
+</body>
+
+</html>
