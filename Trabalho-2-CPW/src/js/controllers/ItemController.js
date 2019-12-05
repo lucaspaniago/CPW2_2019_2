@@ -22,16 +22,11 @@ class ItemController {
     }
 
     removerCompra(compra) {
-        //console.log('entrei');
-        //console.log(compra);
-        //console.log(this.compras);
         for (let i = 0; i < this.compras.length; i++) {
             if (this.compras[i].item.descricao == compra.item.descricao || this.compras[i].item.id == compra.item.id) {
-                //console.log('entrei no if');
                 this.compras.splice(i, 1);
             }
         }
-        //console.log(this.compras);
     }
 
     filtrar(filtro) {
@@ -54,7 +49,6 @@ class ItemController {
 
     buscarUnidadeDeMedida(itemSelecionado) {
 
-        console.log(itemSelecionado);
         let unidadeDeMedida = this.itens.filter(function (item) {
             let descricao = item.descricao.toLowerCase();
             //let email = item.email.toLowerCase();
@@ -67,13 +61,11 @@ class ItemController {
             return descricao.includes(itemSelecionado) /* || email.includes(filtro)*/ ;
         });
 
-        // console.log (unidadeDeMedida);
         return unidadeDeMedida[0].unidadeDeMedida;
     }
 
     buscarItem(itemSelecionado) {
 
-        //console.log(itemSelecionado);
         let itemProcurado = this.itens.filter(function (item) {
             let descricao = item.descricao.toLowerCase();
             //let email = item.email.toLowerCase();
@@ -86,7 +78,6 @@ class ItemController {
             return descricao.includes(itemSelecionado) /* || email.includes(filtro)*/ ;
         });
 
-        // console.log (unidadeDeMedida);
         return itemProcurado[0];
     }
 

@@ -18,8 +18,7 @@ class Compra {
         this.item = item;
         this.quantidade = quantidade;
         this.check = false;
-        
-        console.log (this.item.unidadeDeMedida[this.item.unidadeDeMedida.length -1]);
+    
         if(quantidade > 1 && this.item.unidadeDeMedida != 'kg' && this.item.unidadeDeMedida[this.item.unidadeDeMedida.length - 1] != 's') {
             this.item.unidadeDeMedida = this.item.unidadeDeMedida + 's';
         }

@@ -31,11 +31,8 @@ body {
 
 #formularioItem {
   padding: 10px;
-  //border: 1px solid $cor-borda;
-  //box-shadow: 2px 2px #95a5a6;
   border-bottom: 1px solid rgb(190, 188, 188);
   box-shadow: 0px 1px rgb(219, 217, 217);
-  //border-radius: 5px;
   width: 90%;
   margin: auto;
 
@@ -83,24 +80,15 @@ body {
 
 #conteudo {
   padding: 10px;
-  //border: 1px solid $cor-borda;
-  //box-shadow: 2px 2px #95a5a6;
-  //border-bottom: 1px solid rgb(190, 188, 188);
-  //box-shadow: 0px 1px rgb(219, 217, 217);
-  //border-radius: 5px;
   width: 90%;
   margin: auto;
 
   #tabelaCompras {
-    //border: solid 1px black;
     padding: 10px;
     width: 90%;
-    //margin: auto;
-    //text-align: left;
 
     table {
       border-collapse: collapse;
-      //margin: 0px auto 50px auto;
       width: 50%;
       font-family: $fonte-padrao;
 
@@ -136,7 +124,6 @@ body {
           // Regra geral
           text-align: left;
           padding: 5px 0px;
-          //border: 1px solid blue;
 
           // Regra específica para a primeira coluna
           &:first-child {
@@ -172,48 +159,38 @@ body {
 
   #cardsCompras {
     display: none;
-    //border: solid 1px black;
-    padding: 5px 0px;
-    // Cada div representa um card
-    div {
-      //border: 1px solid #95a5a6;
+
+    #cardConteudo {
+      display: table;
       box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
       border-radius: 5px;
       margin: 0px auto 10px auto;
       width: 90%;
-      padding: 14px 7px 7px 7px;
+
+      .esquerda,
+      .direita {
+        width: 15%;
+        display: table-cell;
+      }
+
+      .direita {
+        text-align: right;
+      }
 
       span {
+        vertical-align: middle;
         font-family: $fonte-padrao;
-        font-size: 80%;
-        display: block;
-        text-indent: 40px;
-
-        &:first-child,
-        &:nth-child(2) {
-          text-indent: 0px;
-          display: inline-block;
-          font-size: 100%;
-          margin-bottom: -5px;
-        }
-
-        &:first-child {
-          background-color: $cor-botao-primario;
-          color: white;
-          padding: 10px 15px;
-          border-radius: 50%;
-          margin-right: 3px;
-        }
+        font-size: 150%;
+        display: inline-block;
+        margin: 0px 10px 0px 10px;
       }
     }
-    img {
-      border: solid 1px black;
-      margin: auto;
-      display: block;
-      width: 70%;
-    }
-    span {
-      font-family: $fonte-padrao;
+    a {
+      img {
+        vertical-align: middle;
+        display: inline-block;
+        width: 100%;
+      }
     }
   }
 
@@ -228,8 +205,6 @@ body {
     border: 1px solid #cccccc;
     outline: none;
     padding: 0px 20px 0px 20px;
-
-    //text-indent: 20px;
     font-size: 90%;
 
     &:hover {
@@ -244,6 +219,17 @@ body {
   #conteudo {
     #cardsCompras {
       display: block;
+
+      span {
+        font-family: $fonte-padrao;
+      }
+
+      img {
+        border: none;
+        width: 50%;
+        display: block;
+        margin: 0px auto;
+      }
     }
 
     #tabelaCompras {

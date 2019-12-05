@@ -123,31 +123,6 @@ class ItemView {
         }
     }
 
-    criarCabecalhoTabela() {
-        /**
-         * Cria o cabeçalho da tabela
-         */
-        let cabecalho = document.createElement('thead');
-        let linhaCabecalho = document.createElement('tr');
-        let colunaCheck = document.createElement('th');
-        colunaCheck.innerText = 'Confirmar';
-        let colunaItem = document.createElement('th');
-        colunaItem.innerText = 'Item';
-        let colunaExcluir = document.createElement('th');
-        colunaExcluir.innerText = 'Excluir';
-
-        // Adiciona as colunas na linha do cabeçalho
-        linhaCabecalho.appendChild(colunaCheck);
-        linhaCabecalho.appendChild(colunaItem);
-        linhaCabecalho.appendChild(colunaExcluir);
-
-        // Adiciona a linha do cabeçalho no cabeçalho
-        cabecalho.appendChild(linhaCabecalho);
-
-        // Retorna o cabeçalho criado
-        return cabecalho;
-    }
-
     criarCorpoTabela(compras) {
         /**
          * Cria o corpo da tabela
@@ -201,13 +176,45 @@ class ItemView {
              */
             this.controller.compras.forEach(function (compra) {
                 let card = document.createElement('div');
-                let inicialDescricao = document.createElement('span');
-                inicialDescricao.innerText = compra.item.descricao.charAt(0);
+                card.setAttribute('id', 'cardConteudo');
+
+                let celulaCheck = document.createElement('a');
+                
+                if (compra.check == false) {
+                    celulaCheck.setAttribute('id', compra.item.id);
+                    celulaCheck.setAttribute('onclick', 'itemView.checar(event, \'' + compra.item.id + '\')');
+                    celulaCheck.innerHTML = '<img title="Clique para confirmar que já adicionou ' + compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao + ' ao carrinho de compras" src="src/img/check.png" alt="Carrinho de compra com a opção de confirmar que já pegou ' + compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao + '">';
+                } else {
+                    celulaCheck.setAttribute('id', compra.item.id);
+                    celulaCheck.innerHTML = '<img title="' + compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao + ' já adicionado ao carrinho de compras" src="src/img/checked.png" alt="Carrinho de compra com um simbolo de checado">';
+                }
+
+                let esquerda = document.createElement('div');
+                esquerda.setAttribute('class', 'esquerda');
+                esquerda.appendChild(celulaCheck);                
+                
+
                 let descricao = document.createElement('span');
-                let tamanhoDescricao = compra.item.descricao.length;
-                descricao.innerText = compra.item.descricao.substr(1, tamanhoDescricao);
-                card.appendChild(inicialDescricao);
-                card.appendChild(descricao);
+                descricao.innerText = compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao;
+                
+
+                let meio = document.createElement('div');
+                meio.setAttribute('class', 'meio');
+                meio.appendChild(descricao);                
+
+                let celulaExcluir = document.createElement('a');
+                celulaExcluir.setAttribute('onclick', 'itemView.removerCompra(event, \'' + compra.item.id + '\')');
+                celulaExcluir.innerHTML = '<img title="Clique para remover ' + compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao + ' do carrinho de compras" src="src/img/remover.png" alt="Carrinho de compra com simbolo que remete à remoção de ' + compra.quantidade + ' ' + compra.item.unidadeDeMedida + ' de ' + compra.item.descricao + ' da sua lista de compras ">';
+                celulaExcluir.setAttribute('class', 'excluir');
+
+                let direita = document.createElement('div');
+                direita.setAttribute('class', 'direita');
+                direita.appendChild(celulaExcluir);                
+                
+                card.appendChild(esquerda);
+                card.appendChild(meio);
+                card.appendChild(direita);
+
                 areaListagemCompras.appendChild(card);
             });
         } else {
@@ -233,7 +240,6 @@ class ItemView {
 
         let filtro = document.getElementById('filtro').value;
         filtro = filtro.toLowerCase();
-        console.log(filtro);
 
         /**
          * Filtra as Compras de acordo
@@ -253,8 +259,6 @@ class ItemView {
 
         // Recupera os valores do formulário
         let itemSelecionado = $('#item').val();
-
-        //console.log(itemSelecionado);
 
         let divUnidadeDeMedida = document.getElementById('unidadeDeMedida');
         let unidadeDeMedida = this.controller.buscarUnidadeDeMedida(itemSelecionado);

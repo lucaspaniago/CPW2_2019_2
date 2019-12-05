@@ -141,42 +141,33 @@ body {
 }
 #conteudo #cardsCompras {
   display: none;
-  padding: 5px 0px;
 }
-#conteudo #cardsCompras div {
+#conteudo #cardsCompras #cardConteudo {
+  display: table;
   box-shadow: 2px 2px 5px #ededee, -1px -1px 3px #ededee;
   border-radius: 5px;
   margin: 0px auto 10px auto;
   width: 90%;
-  padding: 14px 7px 7px 7px;
 }
-#conteudo #cardsCompras div span {
+#conteudo #cardsCompras #cardConteudo .esquerda,
+#conteudo #cardsCompras #cardConteudo .direita {
+  width: 15%;
+  display: table-cell;
+}
+#conteudo #cardsCompras #cardConteudo .direita {
+  text-align: right;
+}
+#conteudo #cardsCompras #cardConteudo span {
+  vertical-align: middle;
   font-family: "padrao";
-  font-size: 80%;
-  display: block;
-  text-indent: 40px;
-}
-#conteudo #cardsCompras div span:first-child, #conteudo #cardsCompras div span:nth-child(2) {
-  text-indent: 0px;
+  font-size: 150%;
   display: inline-block;
-  font-size: 100%;
-  margin-bottom: -5px;
+  margin: 0px 10px 0px 10px;
 }
-#conteudo #cardsCompras div span:first-child {
-  background-color: #019875;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 50%;
-  margin-right: 3px;
-}
-#conteudo #cardsCompras img {
-  border: solid 1px black;
-  margin: auto;
-  display: block;
-  width: 70%;
-}
-#conteudo #cardsCompras span {
-  font-family: "padrao";
+#conteudo #cardsCompras a img {
+  vertical-align: middle;
+  display: inline-block;
+  width: 100%;
 }
 #conteudo #filtro {
   margin: 30px 0px 10px 0px;
@@ -198,6 +189,15 @@ body {
 @media only screen and (max-width: 600px) {
   #conteudo #cardsCompras {
     display: block;
+  }
+  #conteudo #cardsCompras span {
+    font-family: "padrao";
+  }
+  #conteudo #cardsCompras img {
+    border: none;
+    width: 50%;
+    display: block;
+    margin: 0px auto;
   }
   #conteudo #tabelaCompras {
     display: none;
